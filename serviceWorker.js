@@ -34,7 +34,8 @@ var filesToCache = [
     'sounds/18.ogg',
     'sounds/19.ogg',
     'sounds/20.ogg',
-    'fonts/Starjedi.ttf'
+    'fonts/Starjedi.ttf',
+    'bb8.png'
 ];
 
 var staticCacheName = 'cache-v1';

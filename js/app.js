@@ -45,6 +45,7 @@ function init(){
     // load bb8
     const objectLoader = new THREE.ObjectLoader();
     objectLoader.load("bb-unit-threejs/bb-unit.json",function(obj){
+        console.log("BB-8 Loaded");
         bb8 = obj;
 
         obj.rotateY(270*Math.PI/180);
@@ -97,6 +98,7 @@ function animate() {
     controls.update();
 
     if(loading && bb8 && bb8.visible){
+        console.log("BB-8 Rendered");
         loading = false;
         document.querySelector('#center').style.display = 'none';
     }

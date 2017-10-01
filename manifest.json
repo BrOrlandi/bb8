@@ -1,0 +1,32 @@
+{
+    "short_name": "BB-8 Three.Js",
+    "name": "BB-8 Three.Js",
+    "description": "Just a cute BB-8 in Three.js which plays random sounds.",
+    "background_color": "#000",
+    "theme_color": "#000",
+    "icons": [
+      {
+        "src": "bb8.png",
+        "sizes": "96x96",
+        "type": "image/png"
+      },
+      {
+        "src": "bb8.png",
+        "sizes": "144x144",
+        "type": "image/png"
+      },
+      {
+        "src": "bb8.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "bb8.png",
+        "sizes": "600x600",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "./index.html",
+    "display": "standalone",
+    "orientation": "portrait"
+  }
