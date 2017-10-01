@@ -1,6 +1,12 @@
 let scene, camera, renderer;
 let sphere;
+let sound;
 let addLight = false;
+let loading = true;
+let bb8;
+
+const audios = [];
+
 
 function init(){
     scene = new THREE.Scene();
@@ -39,12 +45,14 @@ function init(){
     // load bb8
     const objectLoader = new THREE.ObjectLoader();
     objectLoader.load("bb-unit-threejs/bb-unit.json",function(obj){
-        scene.add(obj);
+        bb8 = obj;
+
         obj.rotateY(270*Math.PI/180);
         obj.rotateZ(5*Math.PI/180);
 
         obj.position.y = -50;
-        
+
+        scene.add(obj);        
         
         var geometry = new THREE.SphereGeometry( 32, 32, 32 );
         var material = new THREE.MeshBasicMaterial( {color: 0xff0000} );
@@ -57,13 +65,28 @@ function init(){
         },3000)
     });
 
+    // audio
+    var listener = new THREE.AudioListener();
+    camera.add( listener );
+
+    sound = new THREE.Audio( listener );
+    
+    var audioLoader = new THREE.AudioLoader();
+    
+    //Load sounds
+    for(let i=1;i<21;i++){
+        audioLoader.load( 'sounds/'+i+'.ogg', function( buffer ) {
+            audios.push(buffer);
+        });
+    }
+
+    document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+    document.addEventListener( 'touchstart', onDocumentMouseDown, false );
+
 }
 
 function animate() {
     
-    // Read more about requestAnimationFrame at http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
-    requestAnimationFrame(animate);
-
     if(addLight){
         addLight = false;
         scene.add( sphere );
@@ -73,9 +96,25 @@ function animate() {
     renderer.render(scene, camera);
     controls.update();
 
+    if(loading && bb8 && bb8.visible){
+        loading = false;
+        document.querySelector('#center').style.display = 'none';
+    }
+
+    // Read more about requestAnimationFrame at http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
+    requestAnimationFrame(animate);
+
 }
 
 window.onload = function(){
     init();
     animate();
 };
+
+function onDocumentMouseDown( event ) {
+    // event.preventDefault();
+    if(!loading){
+        sound.setBuffer(audios[Math.floor(Math.random()*20)]);
+        sound.play();
+    }
+}

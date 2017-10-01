@@ -1,3 +1,8 @@
+@font-face {
+    font-family: StarWars;
+    src: url("fonts/Starjedi.ttf"); 
+}
+
 html, body {
     width: 100%;
     height: 100%;
@@ -18,3 +23,18 @@ body {
        -moz-box-sizing: border-box;
             box-sizing: border-box;
   }
+
+#center{
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+#loading{
+    color: rgb(255, 217, 0);
+    font-family: StarWars;
+    font-size: 4vw;
+    letter-spacing: 7px;
+}
